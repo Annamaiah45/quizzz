@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+
+body {
+    background-color: #54c3ef;
+    top: 5%;
+}
+
+.quiz {
+    color: #fad744;
+    text-align: center;
+    font-family: 'Caveat Brush', sans-serif;
+    font-size: xx-large;
+}
+
+#rect {
+    border: 1px solid #2b3252;
+    top: 15%;
+    left: 25%;
+    right: 25%;
+    bottom: -45%;
+    background-color: #2b3252;
+    position: absolute;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+#rec {
+    color: #fad744;
+    position: absolute;
+    left: 3%;
+    right: 3%;
+    background-color: #2b3252;
+}
+
+#sp {
+    border: 1px solid white;
+    color: black;
+    font-weight: Bold;
+    text-align: center;
+    width: 90px;
+    height: 120px;
+    background-color: white;    
+    position: sticky;
+    top: 1%;
+}
+
+.safe {
+    border: 1px solid transparent;
+    width: 300px;
+    height: 600px;
+    background-color: transparent;
+    margin-top: 22px;
+    left: 76%;
+    right: 10%;
+    bottom: 10%;
+    position: relative;
+    font-weight: bold;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+#btn {
+    background-color: #fad744;
+    position: absolute;
+    left: 43%;
+    bottom: -6%;
+    border-radius: 8%;
+}
+    </style>
+</head>
+<body>
+    <div>
+        <main class="container">
+            <h1 class="quiz">The Quiz App</h1>
+            <div class="safe">
+                <p id="sp">Score:<span id="ss"></span></p> 
+            </div>
+            <div id="rect">
+                <div id="rec">
+                    <div id="Qa">
+                        <p id="a"></p>
+                        <div id="opta">
+                            <input type="radio" id="u" name="opt0" value="As">
+                            <label for="u" id="zebra"></label>
+                            <input type="radio" id="v" name="opt0" value="Bs">
+                            <label for="v" id="zeb1"></label>
+                            <input type="radio" id="w" name="opt0" value="Cs">
+                            <label for="w" id="zeb2"></label>
+                            <input type="radio" id="x" name="opt0" value="Ds">
+                            <label for="x" id="zeb3"></label>
+                        </div>
+                        <div id="line0"></div>
+                    </div>
+                    <div id="Qb">
+                        <p id="b"></p>
+                        <div id="optb">
+                            <input type="radio" id="uu" name="opt1" value="As">
+                            <label for="uu" id="zeb4"></label>
+                            <input type="radio" id="vv" name="opt1" value="Bs">
+                            <label for="vv" id="zeb5"></label>
+                            <input type="radio" id="ww" name="opt1" value="Cs">
+                            <label for="ww" id="zeb6"></label>
+                            <input type="radio" id="xx" name="opt1" value="Ds">
+                            <label for="xx" id="zeb7"></label>
+                        </div>
+                        <div id="line1"></div>
+                    </div>
+                    <div id="Qc">
+                        <p id="c"></p>
+                        <div id="optc">
+                            <input type="radio" id="uuu" name="opt2" value="As">
+                            <label for="uuu"  id="zeb8"></label>
+                            <input type="radio" id="vvv" name="opt2" value="Bs">
+                            <label for="vvv" id="zeb9"></label>
+                            <input type="radio" id="www" name="opt2" value="Cs">
+                            <label for="www" id="zeb10"></label>
+                            <input type="radio" id="xxx" name="opt2" value="Ds">
+                            <label for="xxx" id="zeb11"></label>
+                        </div>
+                        <div id="line2"></div>
+                    </div>
+                    <div id="Qd">
+                        <p id="d"></p>
+                        <div id="optd">
+                            <input type="radio" id="uuuu" name="opt3" value="As">
+                            <label for="uuuu" id="zeb12"></label>
+                            <input type="radio" id="vvvv" name="opt3" value="Bs">
+                            <label for="vvvv" id="zeb13"></label>
+                            <input type="radio" id="wwww" name="opt3" value="Cs">
+                            <label for="wwww" id="zeb14"></label>
+                            <input type="radio" id="xxxx" name="opt3" value="Ds">
+                            <label for="xxxx" id="zeb15"></label>
+                        </div>
+                        <div id="line3"></div>
+                    </div>
+                    <div id="Qe">
+                        <p id="e"></p>
+                        <div id="opte">
+                            <input type="radio" id="uz" name="opt4" value="As">
+                            <label for="uz" id="zeb16"></label>
+                            <input type="radio" id="vz" name="opt4" value="Bs">
+                            <label for="vz" id="zeb17"></label>
+                            <input type="radio" id="wz" name="opt4" value="Cs">
+                            <label for="wz" id="zeb18"></label>
+                            <input type="radio" id="xz" name="opt4" value="Ds">
+                            <label for="xz" id="zeb19"></label>
+                        </div>
+                        <div id="line4"></div>
+                    </div>
+                    <button id="btn" onclick="returnScore()">submit</button>
+                </div>
+            </div>
+            </div>
+        </main>
+    </div>    
+   
+</body>
+<script>
+    const main = document.getElementById('rec');
+
+async function loadNames(){
+    const res = await fetch('https://5d76bf96515d1a0014085cf9.mockapi.io/quiz');
+    const names = await res.json();
+
+        document.getElementById('a').innerHTML="Q"+"1"+"."+" "+names[0].question;
+        document.getElementById('a').style.fontWeight = 'bold';
+        document.getElementById('zebra').innerHTML = names[0].options[0]+"<br>";
+        document.getElementById('zeb1').innerHTML = names[0].options[1]+"<br>";
+        document.getElementById('zeb2').innerHTML = names[0].options[2]+"<br>";
+        document.getElementById('zeb3').innerHTML = names[0].options[3]+"<br>";
+        document.getElementById('line0').style.border = "1px solid #fad744";
+
+        document.getElementById('b').innerHTML="Q"+"2"+"."+" "+names[1].question;
+        document.getElementById('b').style.fontWeight = 'bold';
+        document.getElementById('zeb4').innerHTML = names[1].options[0]+"<br>";
+        document.getElementById('zeb5').innerHTML = names[1].options[1]+"<br>";
+        document.getElementById('zeb6').innerHTML = names[1].options[2]+"<br>";
+        document.getElementById('zeb7').innerHTML = names[1].options[3]+"<br>";
+        document.getElementById('line1').style.border = "1px solid #fad744";
+        
+        
+        document.getElementById('c').innerHTML="Q"+"3"+"."+" "+names[2].question;
+        document.getElementById('c').style.fontWeight = 'bold';
+        document.getElementById('zeb8').innerHTML = names[2].options[0]+"<br>";
+        document.getElementById('zeb9').innerHTML = names[2].options[1]+"<br>";
+        document.getElementById('zeb10').innerHTML = names[2].options[2]+"<br>";
+        document.getElementById('zeb11').innerHTML = names[2].options[3]+"<br>";
+        document.getElementById('line2').style.border = "1px solid #fad744";
+        
+        document.getElementById('d').innerHTML="Q"+"4"+"."+" "+names[3].question;
+        document.getElementById('d').style.fontWeight = 'bold';
+        document.getElementById('zeb12').innerHTML = names[3].options[0]+"<br>";
+        document.getElementById('zeb13').innerHTML = names[3].options[1]+"<br>";
+        document.getElementById('zeb14').innerHTML = names[3].options[2]+"<br>";
+        document.getElementById('zeb15').innerHTML = names[3].options[3]+"<br>";
+        document.getElementById('line3').style.border = "1px solid #fad744";
+
+        document.getElementById('e').innerHTML="Q"+"5"+"."+" "+names[4].question;
+        document.getElementById('e').style.fontWeight = 'bold';
+        document.getElementById('zeb16').innerHTML = names[4].options[0]+"<br>";
+        document.getElementById('zeb17').innerHTML = names[4].options[1]+"<br>";
+        document.getElementById('zeb18').innerHTML = names[4].options[2]+"<br>";
+        document.getElementById('zeb19').innerHTML = names[4].options[3]+"<br>";
+        document.getElementById('line4').style.border = "1px solid #fad744";
+
+
+}
+loadNames();
+    
+var answers = ["Cs","As","Cs","Cs","Bs"]; 
+var tot = answers.length;
+
+function getCheckedValue( radioName ){
+    var radios = document.getElementsByName( radioName ); // Get radio group by-name
+    for(var y=0; y<radios.length; y++)
+      if(radios[y].checked)
+    return radios[y].value; // return the checked value
+}
+
+function getScore(){
+  var score = 0;
+  for (var i=0; i<tot; i++)
+    if(getCheckedValue("opt"+i)===answers[i]) score += 1; // increment only
+  return score;
+}
+
+function returnScore(){
+    let rs = document.getElementById('ss');
+    rs.innerHTML = "<br>"+getScore() +"/"+ tot;
+    rs.style.fontWeight = 'bold 1200';
+    rs.style.color = "black";
+    rs.style.fontSize = '32px';
+}
+</script>
+</html>
